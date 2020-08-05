@@ -24,8 +24,6 @@ class Table extends Component {
         };
 
         const correctAnswer = operators[this.props.arithmetic](this.props.leftNr, this.props.rightNr);
-        console.log("answer: " + answer);
-        console.log("correctAnswer: " + correctAnswer);
 
         if (Number.parseFloat(answer).toFixed(1) ===
             Number.parseFloat(correctAnswer).toFixed(1)) {
@@ -33,6 +31,8 @@ class Table extends Component {
         }
         this.setState({
             answerIsCorrect: userHasRight
+        }, function (){
+            this.props.changeCorrectAnswer(this.props.id, this.state.answerIsCorrect);
         });
     }
     render() {
