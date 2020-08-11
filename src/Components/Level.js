@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Table from "./Table"
 
+
 class Level extends Component {
     constructor() {
         super();
@@ -20,7 +21,7 @@ class Level extends Component {
         if (Object.keys(updatedAnswers) && Object.keys(updatedAnswers).length ===
             this.props.tables.length &&
             !Object.values(updatedAnswers).includes(false)) {
-            this.props.changeLevel();
+            this.props.levelCompleted();
         }
     }
     render() {

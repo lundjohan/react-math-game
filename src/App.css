@@ -16,3 +16,8 @@
 .Table {
   padding: 1em;
 }
+.Timer{
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
