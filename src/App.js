@@ -16,8 +16,7 @@ class App extends Component {
       levelTimeInSec: importedLevels[STARTING_LEVEL].levelTimeInSec
     }
     this.selectRandNrs = this.selectRandNrs.bind(this);
-    this.levelCompleted = this.levelCompleted.bind(this);
-    this.timeIsUp = this.timeIsUp.bind(this);
+    this.changeLevel = this.changeLevel.bind(this);
   }
   selectRandNrs(allNrs, amountToReturn) {
     if (allNrs.length <= amountToReturn) {
@@ -31,22 +30,16 @@ class App extends Component {
     }
     return arr;
   }
-  levelCompleted() {
+  changeLevel(moveUp) {
     this.setState(function (state) {
-      return (
-        {
-          currentLevel: state.currentLevel + 1,
-          levelTimeInSec: state.levels[state.currentLevel + 1].levelTimeInSec
-        }
-      )
-    });
-  }
-
-  //N.B!!! Lowest currentlevel is supposed to be 1.
-  timeIsUp() {
-    const levelToChangeTo = this.state.currentLevel === STARTING_LEVEL ? STARTING_LEVEL
-      : this.state.currentLevel - 1;
-    this.setState(function (state) {
+      let levelToChangeTo;
+      if (moveUp) {
+        levelToChangeTo = state.currentLevel + 1;
+      }
+      else {
+        levelToChangeTo = state.currentLevel === STARTING_LEVEL ? STARTING_LEVEL
+          : state.currentLevel - 1;
+      }
       return (
         {
           currentLevel: levelToChangeTo,
@@ -55,26 +48,27 @@ class App extends Component {
       )
     });
   }
+
   tick() {
     if (this.state.levelTimeInSec <= 0) {
-        this.timeIsUp();
+      this.changeLevel(false);
     }
     else {
-        this.setState(state => ({
-          levelTimeInSec: state.levelTimeInSec - 1
-        }));
+      this.setState(state => ({
+        levelTimeInSec: state.levelTimeInSec - 1
+      }));
     }
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
 
     this.interval = setInterval(() => this.tick(), 1000);
 
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     clearInterval(this.interval);
-}
+  }
 
   render() {
     const NR_OF_TABLES = 12;
@@ -85,9 +79,9 @@ componentWillUnmount() {
       <div className="App" >
         <p></p>
         <Level name={levelName} tables={tables}
-          levelCompleted={this.levelCompleted}
+          changeLevel={this.changeLevel}
         />
-        <Timer className="Timer" secsRemainingForLevel = {this.state.levelTimeInSec}/>
+        <Timer className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
       </div>
     );
   }

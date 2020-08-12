@@ -21,7 +21,7 @@ class Level extends Component {
         if (Object.keys(updatedAnswers) && Object.keys(updatedAnswers).length ===
             this.props.tables.length &&
             !Object.values(updatedAnswers).includes(false)) {
-            this.props.levelCompleted();
+            this.props.changeLevel(true);
         }
     }
     render() {
