@@ -2,7 +2,7 @@ const levels = [
     {}, //not used level ("level 0")
     {
         "level": "1",
-        "levelTimeInSec": 20,
+        "levelTimeInSec": 4,
         numbers: {
             "leftNrs": [1, 2, 3, 4, 5, 6, 7, 8, 9],
             "arithmetic": "+",

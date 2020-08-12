@@ -4,6 +4,7 @@ import Level from './Components/Level'
 import importedLevels from './Database/levels'
 import Timer from "./Components/Timer"
 const STARTING_LEVEL = 1;
+const NR_OF_TABLES = 12;
 
 class App extends Component {
   constructor() {
@@ -73,7 +74,6 @@ class App extends Component {
   }
 
   render() {
-    const NR_OF_TABLES = 12;
     const levelName = this.state.levels[this.state.currentLevel].level;
     const levelNrs = this.state.levels[this.state.currentLevel].numbers;
     let tables = this.selectRandNrs(levelNrs, NR_OF_TABLES);
