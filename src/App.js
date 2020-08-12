@@ -10,8 +10,6 @@ class App extends Component {
     super();
     this.state = {
       levels: importedLevels,
-      //N.B! Lowest currentLevel is supposed to be one, 
-      //if this changes refactor currentLevel in more than this place
       currentLevel: STARTING_LEVEL,
       levelTimeInSec: importedLevels[STARTING_LEVEL].levelTimeInSec
     }
@@ -82,10 +80,10 @@ class App extends Component {
     return (
       <div className="App" >
         <p></p>
-        <Level key = {levelName} name={levelName} tables={tables}
+        <Level key = {"level_"+levelName} name={levelName} tables={tables}
           changeLevel={this.changeLevel}
         />
-        <Timer className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
+        <Timer key = {"timer_" + levelName} className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
       </div>
     );
   }
