@@ -24,6 +24,13 @@ class Level extends Component {
             this.props.changeLevel(true);
         }
     }
+    
+    shouldComponentUpdate(nextProps, nextState) { 
+        if (nextProps.name === this.props.name) { 
+          return false;
+        }
+        return true;
+      }
     render() {
         let here = this;
         return (
