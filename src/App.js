@@ -18,19 +18,22 @@ class App extends Component {
     this.selectRandNrs = this.selectRandNrs.bind(this);
     this.changeLevel = this.changeLevel.bind(this);
   }
-  selectRandNrs(allNrs, amountToReturn) {
-    if (allNrs.length <= amountToReturn) {
-      return allNrs;
-    }
+  selectRandNrs(levelNrs, amountToReturn) {
     let arr = [];
+    const leftNrs = levelNrs.leftNrs;
+    const arithmetic = levelNrs.arithmetic;
+    const rightNrs = levelNrs.rightNrs;
     for (let i = 0; i < amountToReturn; i++) {
-      arr.push(allNrs
-      [Math.floor
-          (Math.random() * allNrs.length)]);
+      arr.push({
+        leftNr: leftNrs[Math.floor(Math.random() * leftNrs.length)],
+        arithmetic: arithmetic,
+        rightNr: rightNrs[Math.floor(Math.random() * rightNrs.length)],
+      });
     }
     return arr;
   }
   changeLevel(moveUp) {
+    console.log("changeLevel is called");
     this.setState(function (state) {
       let levelToChangeTo;
       if (moveUp) {
@@ -52,6 +55,7 @@ class App extends Component {
 
   tick() {
     if (this.state.levelTimeInSec <= 0) {
+      console.log ("inside tick() if state.levelTimeInSec");
       this.changeLevel(false);
     }
     else {
