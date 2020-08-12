@@ -47,6 +47,7 @@ class App extends Component {
         }
       )
     });
+    this.forceUpdate();
   }
 
   tick() {
@@ -78,7 +79,7 @@ class App extends Component {
     return (
       <div className="App" >
         <p></p>
-        <Level name={levelName} tables={tables}
+        <Level key = {levelName} name={levelName} tables={tables}
           changeLevel={this.changeLevel}
         />
         <Timer className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
