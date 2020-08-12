@@ -4,7 +4,7 @@ import Level from './Components/Level'
 import importedLevels from './Database/levels'
 import Timer from "./Components/Timer"
 const STARTING_LEVEL = 1;
-const NR_OF_TABLES = 12;
+const NR_OF_TABLES_FOR_LEVEL = 2;
 
 class App extends Component {
   constructor() {
@@ -12,6 +12,8 @@ class App extends Component {
     this.state = {
       levels: importedLevels,
       currentLevel: STARTING_LEVEL,
+      //nr of turns level has changed (up and down) => useful for giving level unique key every time
+      levelChanges: 0,
       levelTimeInSec: importedLevels[STARTING_LEVEL].levelTimeInSec
     }
     this.selectRandNrs = this.selectRandNrs.bind(this);
@@ -45,7 +47,8 @@ class App extends Component {
       return (
         {
           currentLevel: levelToChangeTo,
-          levelTimeInSec: state.levels[levelToChangeTo].levelTimeInSec
+          levelTimeInSec: state.levels[levelToChangeTo].levelTimeInSec,
+          levelChanges: state.levelChanges +1
         }
       )
     });
@@ -76,11 +79,12 @@ class App extends Component {
   render() {
     const levelName = this.state.levels[this.state.currentLevel].level;
     const levelNrs = this.state.levels[this.state.currentLevel].numbers;
-    let tables = this.selectRandNrs(levelNrs, NR_OF_TABLES);
+    const levelChanges = this.state.levelChanges;
+    let tables = this.selectRandNrs(levelNrs, NR_OF_TABLES_FOR_LEVEL);
     return (
       <div className="App" >
         <p></p>
-        <Level key = {"level_"+levelName} name={levelName} tables={tables}
+        <Level key = {"level_"+levelName+"|changes_"+levelChanges} name={levelName} tables={tables}
           changeLevel={this.changeLevel}
         />
         <Timer key = {"timer_" + levelName} className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />

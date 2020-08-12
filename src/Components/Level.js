@@ -26,7 +26,6 @@ class Level extends Component {
     }
     
     shouldComponentUpdate(nextProps, nextState) { 
-        //missar changeLevel(false) vid start...
         if (nextProps.name === this.props.name) { 
           return false;
         }
