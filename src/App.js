@@ -24,12 +24,27 @@ class App extends Component {
     const leftNrs = levelNrs.leftNrs;
     const arithmetic = levelNrs.arithmetic;
     const rightNrs = levelNrs.rightNrs;
-    for (let i = 0; i < amountToReturn; i++) {
-      arr.push({
-        leftNr: leftNrs[Math.floor(Math.random() * leftNrs.length)],
-        arithmetic: arithmetic,
-        rightNr: rightNrs[Math.floor(Math.random() * rightNrs.length)],
-      });
+
+    //reverse engineer answer to division
+    if (arithmetic === "/") {
+      for (let i = 0; i < amountToReturn && i < leftNrs.length && i < rightNrs.length; i++) {
+        let randIndOne = Math.floor(Math.random() * leftNrs.length);
+        let randIndTwo = Math.floor(Math.random() * rightNrs.length);
+        arr.push({
+          leftNr: leftNrs[randIndOne] * rightNrs[randIndTwo],
+          arithmetic: arithmetic,
+          rightNr: rightNrs[randIndTwo]
+        });
+      }
+    }
+    else { //+, -, *
+      for (let i = 0; i < amountToReturn; i++) {
+        arr.push({
+          leftNr: leftNrs[Math.floor(Math.random() * leftNrs.length)],
+          arithmetic: arithmetic,
+          rightNr: rightNrs[Math.floor(Math.random() * rightNrs.length)],
+        });
+      }
     }
     return arr;
   }
@@ -48,7 +63,7 @@ class App extends Component {
         {
           currentLevel: levelToChangeTo,
           levelTimeInSec: state.levels[levelToChangeTo].levelTimeInSec,
-          levelChanges: state.levelChanges +1
+          levelChanges: state.levelChanges + 1
         }
       )
     });
@@ -56,7 +71,7 @@ class App extends Component {
 
   tick() {
     if (this.state.levelTimeInSec <= 0) {
-      console.log ("inside tick() if state.levelTimeInSec");
+      console.log("inside tick() if state.levelTimeInSec");
       this.changeLevel(false);
     }
     else {
@@ -84,10 +99,10 @@ class App extends Component {
     return (
       <div className="App" >
         <p></p>
-        <Level key = {"level_"+levelName+"|changes_"+levelChanges} name={levelName} tables={tables}
+        <Level key={"level_" + levelName + "|changes_" + levelChanges} name={levelName} tables={tables}
           changeLevel={this.changeLevel}
         />
-        <Timer key = {"timer_" + levelName} className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
+        <Timer key={"timer_" + levelName} className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
       </div>
     );
   }
