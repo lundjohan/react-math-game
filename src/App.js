@@ -3,13 +3,14 @@ import './App.css';
 import Level from './Components/Level'
 import importedLevels from './Database/levels'
 import Timer from "./Components/Timer"
-const STARTING_LEVEL = 1;
+const STARTING_LEVEL = 0;
 const NR_OF_TABLES_FOR_LEVEL = 12;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      gameCompleted: false,
       levels: importedLevels,
       currentLevel: STARTING_LEVEL,
       //nr of turns level has changed (up and down) => useful for giving level unique key every time
@@ -52,7 +53,14 @@ class App extends Component {
     console.log("changeLevel is called");
     this.setState(function (state) {
       let levelToChangeTo;
-      if (moveUp) {
+      if (moveUp && state.levels.length === state.currentLevel + 1) {
+        return (
+          {
+            gameCompleted: true
+          }
+        )
+      }
+      else if (moveUp) {
         levelToChangeTo = state.currentLevel + 1;
       }
       else {
@@ -96,12 +104,20 @@ class App extends Component {
     const levelNrs = this.state.levels[this.state.currentLevel].numbers;
     const levelChanges = this.state.levelChanges;
     let tables = this.selectRandNrs(levelNrs, NR_OF_TABLES_FOR_LEVEL);
+    let gameIsCompleted = this.state.gameCompleted;
     return (
       <div className="App" >
-        <Level key={"level_" + levelName + "|changes_" + levelChanges} name={levelName} tables={tables}
-          changeLevel={this.changeLevel}
-        />
-        <Timer  key={"timer_" + levelName} secsRemainingForLevel={this.state.levelTimeInSec} />
+        {gameIsCompleted
+          ?
+          <p>Congratulations! You Win!</p>
+          :
+          <div>
+            <Level key={"level_" + levelName + "|changes_" + levelChanges} name={levelName} tables={tables}
+              changeLevel={this.changeLevel}
+            />
+            <Timer key={"timer_" + levelName} secsRemainingForLevel={this.state.levelTimeInSec} />
+          </div>          
+        }
       </div>
     );
   }

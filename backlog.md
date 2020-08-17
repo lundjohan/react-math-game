@@ -1,9 +1,6 @@
 ##TODO
-- Nästa: division ska vara jämna tal.
-- sen css
-- Fixa setState(state, props) 
-- add timer (and add time for every level inside levels.js)
-- if time runs out, go back one level
 - if no more levels - Game Completed!
+- kommer bara upp 8 tables för divs. Varför?
 - levels.js: add numbers, add levels
+- Fixa setState(state, props) 
 - push to github
