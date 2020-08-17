@@ -15,7 +15,7 @@ class UserInput extends Component {
     render() {
         return (
             <div className ="UserInput">
-                <input type="text" value={this.state.value} onChange={this.handleChange} onBlur={this.focusOut}/>
+                <input type="text" className="TextInput" value={this.state.value} onChange={this.handleChange} onBlur={this.focusOut}/>
             </div>
         )
     }

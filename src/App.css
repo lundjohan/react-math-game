@@ -1,7 +1,9 @@
 .Feedback,
 .Question,
-.UserInput {
+.TextInput {
   float: left;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 .Question{
   width: 5em;
@@ -9,15 +11,29 @@
 
 .Feedback {
   background-color: teal;
-  height          : inherit;
-  padding-left    : 3em;
+  padding-left    : 1em;
+  padding-right: 1em;
 }
 
 .Table {
   padding: 1em;
+  height: 2em;
 }
 .Timer{
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
+  text-align: left;
+    padding: 2em;
+
+}
+.Level{
+  margin:1em;
+ 
+}
+
+@media (min-width: 820px) {
+  .Container {
+    column-count: 2;
+  }
+  .Timer{
+    text-align: right;
+  }
 }

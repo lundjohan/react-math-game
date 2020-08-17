@@ -4,7 +4,7 @@ import Level from './Components/Level'
 import importedLevels from './Database/levels'
 import Timer from "./Components/Timer"
 const STARTING_LEVEL = 1;
-const NR_OF_TABLES_FOR_LEVEL = 2;
+const NR_OF_TABLES_FOR_LEVEL = 12;
 
 class App extends Component {
   constructor() {
@@ -98,11 +98,10 @@ class App extends Component {
     let tables = this.selectRandNrs(levelNrs, NR_OF_TABLES_FOR_LEVEL);
     return (
       <div className="App" >
-        <p></p>
         <Level key={"level_" + levelName + "|changes_" + levelChanges} name={levelName} tables={tables}
           changeLevel={this.changeLevel}
         />
-        <Timer key={"timer_" + levelName} className="Timer" secsRemainingForLevel={this.state.levelTimeInSec} />
+        <Timer  key={"timer_" + levelName} secsRemainingForLevel={this.state.levelTimeInSec} />
       </div>
     );
   }

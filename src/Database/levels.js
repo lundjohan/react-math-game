@@ -2,7 +2,7 @@ const levels = [
     {}, //not used level ("level 0")
     {
         "level": "1",
-        "levelTimeInSec": 15,
+        "levelTimeInSec": 900,
         numbers: {
             "leftNrs": [1, 2, 3, 4, 5, 6, 7, 8, 9],
             "arithmetic": "+",
@@ -11,7 +11,7 @@ const levels = [
     },
     {
         "level": "2",
-        "levelTimeInSec": 20,
+        "levelTimeInSec": 40,
         numbers: {
             "leftNrs": [1, 2, 3, 4, 5, 6, 7, 8, 9],
             "arithmetic": "-",
@@ -20,7 +20,7 @@ const levels = [
     },
     {
         "level": "3",
-        "levelTimeInSec": 20,
+        "levelTimeInSec": 40,
         numbers: {
             "leftNrs": [2, 3, 4, 5, 6, 7, 8, 9],
             "arithmetic": "*",
@@ -30,7 +30,7 @@ const levels = [
     //NB. Division works different than the others. Here leftNr[x] is multiplied with rightNr[x]and the result will be returned as leftNr
     {
         "level": "4",
-        "levelTimeInSec": 20,
+        "levelTimeInSec": 40,
         numbers: {
             "leftNrs": [4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20],
             "arithmetic": "/",

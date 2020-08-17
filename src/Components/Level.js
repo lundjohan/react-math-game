@@ -24,24 +24,25 @@ class Level extends Component {
             this.props.changeLevel(true);
         }
     }
-    
-    shouldComponentUpdate(nextProps, nextState) { 
-        if (nextProps.name === this.props.name) { 
-          return false;
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.name === this.props.name) {
+            return false;
         }
         return true;
-      }
+    }
     render() {
         let here = this;
         return (
-            <div>
+            <div className="Level">
                 <h1>LEVEL {this.props.name}</h1>
-                <p>Answer division challenges with one decimal</p>
-                {this.props.tables.map(function (table, i) {
-                    return <Table key={i} id={i} leftNr={table.leftNr}
-                        arithmetic={table.arithmetic} rightNr={table.rightNr}
-                        changeCorrectAnswer={here.changeCorrectAnswer} />;
-                })}
+                <div className="Container">
+                    {this.props.tables.map(function (table, i) {
+                        return <Table key={i} id={i} leftNr={table.leftNr}
+                            arithmetic={table.arithmetic} rightNr={table.rightNr}
+                            changeCorrectAnswer={here.changeCorrectAnswer} />;
+                    })}
+                </div>
             </div>
         );
     }
