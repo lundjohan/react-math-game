@@ -4,14 +4,10 @@ import UserInput from './UserInput'
 import Feedback from './Feedback'
 
 class Table extends Component {
-    constructor() {
-        super();
-        this.state = { answerIsCorrect: false };
-        this.correctInput = this.correctInput.bind(this);
-    }
+    state = { answerIsCorrect: false };
 
     //very ugly method.
-    correctInput(answer) {
+    correctInput = (answer) => {
         let userHasRight = false;
 
         //see https://stackoverflow.com/questions/5834318/are-variable-operators-possible
@@ -31,11 +27,11 @@ class Table extends Component {
         }
         this.setState({
             answerIsCorrect: userHasRight
-        }, function (){
+        }, function () {
             this.props.changeCorrectAnswer(this.props.id, this.state.answerIsCorrect);
         });
     }
-    render() {
+    render = () => {
         return (<div className="Table">
             <Question leftNr={this.props.leftNr} arithmetic={this.props.arithmetic} rightNr={this.props.rightNr} />
             <UserInput correctInput={this.correctInput} />

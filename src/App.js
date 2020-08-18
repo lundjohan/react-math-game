@@ -7,20 +7,15 @@ const STARTING_LEVEL = 0;
 const NR_OF_TABLES_FOR_LEVEL = 12;
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      gameCompleted: false,
-      levels: importedLevels,
-      currentLevel: STARTING_LEVEL,
-      //nr of turns level has changed (up and down) => useful for giving level unique key every time
-      levelChanges: 0,
-      levelTimeInSec: importedLevels[STARTING_LEVEL].levelTimeInSec
-    }
-    this.selectRandNrs = this.selectRandNrs.bind(this);
-    this.changeLevel = this.changeLevel.bind(this);
+  state = {
+    gameCompleted: false,
+    levels: importedLevels,
+    currentLevel: STARTING_LEVEL,
+    //nr of turns level has changed (up and down) => useful for giving level unique key every time
+    levelChanges: 0,
+    levelTimeInSec: importedLevels[STARTING_LEVEL].levelTimeInSec
   }
-  selectRandNrs(levelNrs, amountToReturn) {
+  selectRandNrs = (levelNrs, amountToReturn) => {
     let arr = [];
     const leftNrs = levelNrs.leftNrs;
     const arithmetic = levelNrs.arithmetic;
@@ -49,7 +44,7 @@ class App extends Component {
     }
     return arr;
   }
-  changeLevel(moveUp) {
+  changeLevel = (moveUp) => {
     console.log("changeLevel is called");
     this.setState(function (state) {
       let levelToChangeTo;
@@ -77,7 +72,7 @@ class App extends Component {
     });
   }
 
-  tick() {
+  tick = () => {
     if (this.state.levelTimeInSec <= 0) {
       console.log("inside tick() if state.levelTimeInSec");
       this.changeLevel(false);
@@ -89,17 +84,17 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
 
     this.interval = setInterval(() => this.tick(), 1000);
 
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     clearInterval(this.interval);
   }
 
-  render() {
+  render = () => {
     const levelName = this.state.levels[this.state.currentLevel].level;
     const levelNrs = this.state.levels[this.state.currentLevel].numbers;
     const levelChanges = this.state.levelChanges;
@@ -116,7 +111,7 @@ class App extends Component {
               changeLevel={this.changeLevel}
             />
             <Timer key={"timer_" + levelName} secsRemainingForLevel={this.state.levelTimeInSec} />
-          </div>          
+          </div>
         }
       </div>
     );

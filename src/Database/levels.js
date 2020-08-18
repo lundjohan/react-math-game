@@ -29,7 +29,7 @@ const levels = [
     //NB. Division works different than the others. Here leftNr[x] is multiplied with rightNr[x]and the result will be returned as leftNr
     {
         "level": "4",
-        "levelTimeInSec": 50,
+        "levelTimeInSec": 120,
         numbers: {
             "leftNrs": [4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20],
             "arithmetic": "/",

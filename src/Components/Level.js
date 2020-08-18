@@ -3,16 +3,13 @@ import Table from "./Table"
 
 
 class Level extends Component {
-    constructor() {
-        super();
-        this.state = {
-            //fills with {1: true, 2:true} ... false if user enters false again
-            correctAnswers: {}
-        };
-        this.changeCorrectAnswer = this.changeCorrectAnswer.bind(this);
-    }
+    state = {
+        //fills with {1: true, 2:true} ... false if user enters false again
+        correctAnswers: {}
+    };
+
     //toValue: boolean
-    changeCorrectAnswer(id, toValue) {
+    changeCorrectAnswer = (id, toValue) => {
         const updatedAnswers = this.state.correctAnswers;
         updatedAnswers[id] = toValue;
         this.setState({
@@ -25,13 +22,13 @@ class Level extends Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate = (nextProps, nextState) => {
         if (nextProps.name === this.props.name) {
             return false;
         }
         return true;
     }
-    render() {
+    render = () => {
         let here = this;
         return (
             <div className="Level">

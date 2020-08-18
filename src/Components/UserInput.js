@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
 class UserInput extends Component {
-    constructor() {
-        super();
-        this.state = { value: '' };
-        this.handleChange = this.handleChange.bind(this);
-        this.focusOut = this.focusOut.bind(this);
-    }
-    handleChange(event) {
+    state = { value: '' };
+    handleChange = (event) => {
         this.setState({ value: event.target.value });
     }
-    focusOut(event){
+    focusOut = (event) => {
         this.props.correctInput(this.state.value);
     }
-    render() {
+    render = () => {
         return (
-            <div className ="UserInput">
-                <input type="text" className="TextInput" value={this.state.value} onChange={this.handleChange} onBlur={this.focusOut}/>
+            <div className="UserInput">
+                <input type="text" className="TextInput" value={this.state.value} onChange={this.handleChange} onBlur={this.focusOut} />
             </div>
         )
     }
