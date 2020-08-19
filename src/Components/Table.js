@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types"
 import Question from './Question'
 import UserInput from './UserInput'
 import Feedback from './Feedback'
@@ -12,8 +13,7 @@ class Table extends Component {
 
         //see https://stackoverflow.com/questions/5834318/are-variable-operators-possible
         var operators = {
-            //parseInt to avoid string addition, surprisingly I need it on both.
-            '+': function (a, b) { return parseFloat(a) + parseFloat(b) },
+            '+': function (a, b) { return a + b },
             '-': function (a, b) { return a - b },
             '*': function (a, b) { return a * b },
             '/': function (a, b) { return a / b }
@@ -38,7 +38,10 @@ class Table extends Component {
             <Feedback text={this.state.answerIsCorrect ? "Correct!" : "False!"} />
         </div>)
     }
-
 }
-
+//automatically removed outside development
+Table.propTypes = {
+    leftNr: PropTypes.number,
+    rightNr: PropTypes.number
+}
 export default Table;
