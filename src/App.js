@@ -106,12 +106,12 @@ class App extends Component {
           ?
           <p>Congratulations! You Win!</p>
           :
-          <div>
+          <>
             <Level key={"level_" + levelName + "|changes_" + levelChanges} name={levelName} tables={tables}
               changeLevel={this.changeLevel}
             />
             <Timer key={"timer_" + levelName} secsRemainingForLevel={this.state.levelTimeInSec} />
-          </div>
+          </>
         }
       </div>
     );
